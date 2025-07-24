@@ -1,0 +1,39 @@
+{% extends "website/index.html" %}
+
+{% block content %}
+
+{% load static %}
+
+{% if employee %}
+<div style="display: flex; flex-direction: column; align-items: center; padding: 40px;">
+
+    <!-- Profile Image -->
+    <div>
+        {% if employee.img %}
+            <img src="{{ employee.img.url }}" alt="Profile Image"
+                 style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid #EB7F23;">
+        {% else %}
+            <img src="{% static 'default.jpg' %}" alt="Default Image"
+                 style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid #aaa;">
+        {% endif %}
+    </div>
+
+    <!-- Name -->
+    <h2 style="font-size: 30px; margin-top: 20px; color: #EB7F23;">{{ employee.name }}</h2>
+
+    <!-- Info List -->
+    <div style="margin-top: 20px; font-size: 18px; line-height: 1.7; text-align: center; color: #EB7F23;">
+        <p><strong> Email:</strong> {{ employee.email }}</p>
+        <p><strong> Phone:</strong> {{ employee.phone }}</p>
+        <p><strong> DOB:</strong> {{ employee.dob }}</p>
+        <p><strong> Department:</strong> {{ employee.department.name }}</p>
+    </div>
+</div>
+{% else %}
+    <p style="text-align: center; color: gray; padding: 40px;">No employee data found.</p>
+{% endif %}
+
+
+
+
+{% endblock content %}
